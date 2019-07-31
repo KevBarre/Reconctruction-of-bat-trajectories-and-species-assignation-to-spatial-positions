@@ -212,8 +212,8 @@ for (i in date)
     if (str_detect(table.pos$ID, i)) 
       {
       height[j] = table.pos$z..m.[j] + antena[which(date==i)]
-      distLight[j] = ((table.pos$x..m.[j]+4)^2 + (table.pos$y..m.[j]+4)^2 + (height[j]-5)^2)^0.5
-      angle[j] = (asin((height[j]-5)/distLight[j])*180)/3.141592654
+      distLight[j] = ((table.pos$x..m.[j]+4)^2 + (table.pos$y..m.[j]+4)^2 + (height[j]-4)^2)^0.5
+      angle[j] = (asin((height[j]-4)/distLight[j])*180)/3.141592654
     }
   }
 }
@@ -425,5 +425,5 @@ for (i in 1:nrow(table.pos3)) {
   }
 }
 
-write.table(Agarder_new,"C:/Users/barre/Documents/Postdoc_Chirolum/Papiers/PaysBas_trajecto/DATA/TriTrajAGarderFull.csv",sep=";",row.names=F)
+write.table(Agarder_new,"./TriTrajAGarderFull.csv",sep=";",row.names=F)
 
