@@ -237,7 +237,7 @@ TriTraj = function(tab, r)
   
   for (j in 1:max(tab$IdTraj)) # j : block identifier
   {
-    print(paste0("round ", r, " block ", j, "/4273"))
+    print(paste0("round ", r, " block ", j, max(table.pos3$IdTraj)))
     subtest = subset(tab,tab$IdTraj == j) # subset of position table for identifier j
     Fmed_temp = quantile(subtest$fsigmax..Hz., 0.5)
     # Positions for which the energy peak = median of the block's energy peaks +/- 5 kH
@@ -411,7 +411,7 @@ Agarder_new = AGarderFinal
 table.pos3 = table.pos2
 round =rep(NA,nrow(table.pos3))
 table.pos3 = cbind(table.pos3, round)
-table.pos3$Vfinal = table.pos3$V
+colnames(table.pos3)[24] = "Vfinal"
 
 table.pos3$IdTraj = paste("i", table.pos3$IdTraj, "_",table.pos3$V1, sep = "")
 
