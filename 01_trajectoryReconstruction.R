@@ -414,6 +414,8 @@ table.pos3 = cbind(table.pos3, round)
 colnames(table.pos3)[24] = "Vfinal"
 
 table.pos3$IdTraj = paste("i", table.pos3$IdTraj, "_",table.pos3$V1, sep = "")
+table.pos3 = table.pos3[,-1]
+Agarder_new = Agarder_new[,-23]
 
 pb <- txtProgressBar(min = 0, max = nrow(table.pos2), style = 3)
 
