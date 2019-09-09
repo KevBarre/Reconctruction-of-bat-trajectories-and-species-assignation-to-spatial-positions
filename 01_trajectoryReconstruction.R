@@ -201,21 +201,19 @@ antena = c(0.95, 0.90, 0.98, 0.99, 0.82, 1, 0.95, 0.90, 0.94, 0.91, 0.95, 0.98) 
 height = rep(999, nrow(table.pos))
 distLight = rep(999, nrow(table.pos))
 angle = rep(999, nrow(table.pos))
+
 pb <- txtProgressBar(min = 0, max = nrow(table.pos), style = 3)
-for (i in date) 
-  {
-  print(i)
-  for (j in 2:nrow(table.pos)) 
-    {
-    Sys.sleep(0.1)
-    setTxtProgressBar(pb, j)
-    if (str_detect(table.pos$ID, i)) 
-      {
-      height[j] = table.pos$z..m.[j] + antena[which(date==i)]
-      distLight[j] = ((table.pos$x..m.[j]+4)^2 + (table.pos$y..m.[j]+4)^2 + (height[j]-4)^2)^0.5
-      angle[j] = (asin((height[j]-4)/distLight[j])*180)/3.141592654
-    }
-  }
+
+for (j in 1:nrow(table.pos)) {
+  
+  setTxtProgressBar(pb, j)
+  
+  height[j] = table.pos$z..m.[j] + antena[which(date==table.pos$date[j])]
+  
+  distLight[j] = ((table.pos$x..m.[j]+4)^2 + (table.pos$y..m.[j]+4)^2 + (height[j]-4)^2)^0.5
+  
+  angle[j] = (asin((height[j]-4)/distLight[j])*180)/3.141592654
+  
 }
 
 # Add the block identifier to the table of positions (V & CVv are not added because they are calculated within the TriTraj function)
